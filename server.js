@@ -7,9 +7,9 @@ const axios = require('axios');
 const app = express();
 const port = 3000;
 
-// Connect to your Alchemy or local Ethereum node
-const web3 = createAlchemyWeb3('http://localhost:7545'); // Update with your Ethereum node URL
-const contractAddress = '0xYourContractAddress'; // Update with your deployed contract address
+// Connect to the Sepolia testnet
+const web3 = createAlchemyWeb3('https://eth-rpc.ankr.com/'); // Update with Sepolia testnet node URL
+const contractAddress = '0xd9145CCE52D386f254917e481eB44e9943F39138'; // Update with your deployed contract address on Sepolia
 const contractABI = require('./build/contracts/LockableNFT.json').abi;
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
@@ -20,7 +20,7 @@ app.get('/api/isTokenLocked/:tokenId', async (req, res) => {
   res.json({ isLocked });
 });
 
-// Add more routes for other contract functions...
+//More contracts can be added here
 
 // Start the server
 app.listen(port, () => {
